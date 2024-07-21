@@ -1,17 +1,25 @@
-import { useDatePickerContext } from '@rehookify/datepicker';
+import { DPData, DPPropGetters } from '@rehookify/datepicker';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import { getMonthClassName } from '../classnames-utils';
 import { Section } from './Section/section';
 import { SectionHeader } from './Section/section-header';
 import { Button } from './Button/button';
+import { FC } from 'react';
 
-export const Months = () => {
+type Props = {
+	data: Pick<DPData, 'months'>;
+	propGetters: Pick<
+		DPPropGetters,
+		'monthButton' | 'addOffset' | 'subtractOffset'
+	>;
+};
+
+export const Months: FC<Props> = (props) => {
 	const {
 		data: { months },
-		propGetters: { subtractOffset, addOffset, monthButton },
-	} = useDatePickerContext();
-
+		propGetters: { addOffset, monthButton, subtractOffset },
+	} = props;
 	const year = months[0].$date.getFullYear();
 
 	return (

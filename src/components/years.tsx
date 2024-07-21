@@ -1,19 +1,31 @@
-import { useDatePickerContext } from '@rehookify/datepicker';
+import {
+	DPData,
+	DPPropGetters,
+	useDatePickerContext,
+} from '@rehookify/datepicker';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import { getYearsClassName } from '../classnames-utils';
 import { Section } from './Section/section';
 import { SectionHeader } from './Section/section-header';
 import { Button } from './Button/button';
-
-export const Years = () => {
+import { FC } from 'react';
+type Props = {
+	data: Pick<DPData, 'years' | 'calendars'>;
+	propGetters: Pick<
+		DPPropGetters,
+		'previousYearsButton' | 'nextYearsButton' | 'yearButton'
+	>;
+};
+export const Years: FC<Props> = (props) => {
 	const {
 		data: {
 			years,
 			calendars: [defaultCalendar],
 		},
 		propGetters: { previousYearsButton, nextYearsButton, yearButton },
-	} = useDatePickerContext();
+	} = props;
+
 	const { year } = defaultCalendar;
 
 	return (

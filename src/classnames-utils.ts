@@ -18,7 +18,7 @@ export const getMonthClassName = (
 ) => {
 	return clsx(className, {
 		// 'bg-red-700 text-white hover:bg-red-700 opacity-100': selected,
-		// 'border border-slate-500': now,
+		'border border-slate-500': now,
 		'opacity-25 cursor-not-allowed': disabled,
 		'bg-blue-900 text-white hover:bg-blue-900 opacity-100': active,
 	});

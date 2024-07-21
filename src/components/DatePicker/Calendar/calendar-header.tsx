@@ -1,6 +1,10 @@
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { SectionHeader } from '../../Section/section-header';
-import { DPCalendar, useDatePickerContext } from '@rehookify/datepicker';
+import {
+	DPData,
+	DPPropGetters,
+	useDatePickerContext,
+} from '@rehookify/datepicker';
 import { Button } from '../../Button/button';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { DropDown } from '../../DropDown';
@@ -9,21 +13,21 @@ import {
 	getYearsClassName,
 } from '../../../classnames-utils';
 
-type Props = PropsWithChildren & {};
+type Props = PropsWithChildren & {
+	data: DPData;
+	propGetters: DPPropGetters;
+};
 
-export const CalendarHeader: FC<Props> = ({ children }) => {
+export const CalendarHeader: FC<Props> = ({ data, propGetters, children }) => {
 	const {
-		data: {
-			calendars: [defaultCalendar],
-			months,
-			years,
-		},
-		propGetters: { subtractOffset, addOffset, monthButton, yearButton },
-	} = useDatePickerContext();
-	const { month, year } = defaultCalendar;
+		calendars: [defaultCalendar],
+		months,
+		years,
+	} = data;
 
-	// console.log(months);
-	// console.log(defaultCalendar);
+	const { subtractOffset, addOffset, monthButton, yearButton } = propGetters;
+
+	const { month, year } = defaultCalendar;
 
 	const MonthsDropDown = (
 		<DropDown

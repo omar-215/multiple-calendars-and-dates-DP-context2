@@ -1,10 +1,9 @@
-import { FC, ReactNode } from 'react';
-import { DPCalendar, useDatePickerContext } from '@rehookify/datepicker';
+import { FC } from 'react';
+import { DPData, DPPropGetters } from '@rehookify/datepicker';
 
 import { getDayClassName } from '../../../classnames-utils';
 import { Button } from '../../Button/button';
 import { Section } from '../../Section/section';
-import { SectionHeader } from '../../Section/section-header';
 import './calender.css';
 import { CalendarHeader } from './calendar-header';
 import { CalendarFooter } from './calendar-footer';
@@ -12,21 +11,27 @@ import { CalendarFooter } from './calendar-footer';
 interface CalendarProps {
 	onCancel?: () => void;
 	onSave?: () => void;
+	data: DPData;
+	propGetters: DPPropGetters;
 }
 
-export const Calendar: FC<CalendarProps> = ({ onCancel, onSave }) => {
+export const Calendar: FC<CalendarProps> = ({
+	data,
+	propGetters,
+	onCancel,
+	onSave,
+}) => {
 	const {
-		data: {
-			weekDays,
-			calendars: [defaultCalendar],
-		},
-		propGetters: { dayButton },
-	} = useDatePickerContext();
-	const { days, month } = defaultCalendar;
+		weekDays,
+		calendars: [defaultCalendar],
+	} = data;
+	const { days } = defaultCalendar;
+
+	const { dayButton } = propGetters;
 
 	return (
 		<Section>
-			<CalendarHeader />
+			<CalendarHeader data={data} propGetters={propGetters} />
 			<div className="grid grid-cols-7 gap-y-2 mb-2 items-center h-8">
 				{weekDays.map((d) => (
 					<p className="text-xs text-center" key={d}>
