@@ -1,6 +1,6 @@
-export { Button } from './button';
-export { Calendar } from './calendar';
+export { Button } from './Button/button';
+export { Calendar } from './DatePicker/Calendar/calendar';
 export { Months } from './months';
-export { Section } from './section';
-export { SectionHeader } from './section-header';
+export { Section } from './Section/section';
+export { SectionHeader } from './Section/section-header';
 export { Years } from './years';

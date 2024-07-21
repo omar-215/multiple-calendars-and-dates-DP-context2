@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
     "@rehookify/datepicker": "^6.0.1",
     "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",
