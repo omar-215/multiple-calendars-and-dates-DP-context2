@@ -1,3 +1,34 @@
+# Notes From Production
+
+- custom logic for handling when the 2nd date is before the 1st date in the range picker :
+
+```jsx
+const onDatesChange = (dates: Date[]) => {
+	// if `range` and select date less than the selected date, reset the selected date
+	if (
+		mode === 'range' &&
+		selectedDates?.length === 1 &&
+		dates[0] < selectedDates[0]
+	) {
+		setSelectedDates([dates[0]]);
+	} else {
+		setSelectedDates(dates);
+	}
+
+	if (withConfirmation) return;
+
+	// If no confirmation is needed, call onSave immediately
+	if (mode === 'single' && dates.length === 1) {
+		onSave(dates[0]);
+		return;
+	}
+
+	if (mode === 'range' && dates.length === 2) {
+		onSave(dates);
+	}
+};
+```
+
 # notes
 
 - in case of handling our custom logic for the range picker :
